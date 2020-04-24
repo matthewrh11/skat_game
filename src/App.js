@@ -7,56 +7,36 @@ class App extends Component {
   state =
   {
     isLoading : false,
-    invoices :
+    items :
     [
       {
         "id":"100",
-        "Vendor":"McDonalds",
-        "Amount":"1800",
-        "Invoice":"1123",
-        "Date":"13/4/2020"
-      },
-      {
-        "id":"200",
-        "Vendor":"McDonalds",
-        "Amount":"1800",
-        "Invoice":"1123",
-        "Date":"13/4/2020"
-      },
-      {
-        "id":"300",
-        "Vendor":"McDonalds",
-        "Amount":"1800",
-        "Invoice":"1123",
-        "Date":"13/4/2020"
+        "Game":"Skat 1.0",
+        "Players":"2-10"
       }
     ]
   };
 
   remove(id) {
-    let updatedInvoices = [...this.state.invoices].filter (i => i.id !== id);
-    this.setState({invoices : updatedInvoices});
+    let updatedItems = [...this.state.items].filter (i => i.id !== id);
+    this.setState({items : updatedItems});
   }
 
   render(){
     const isLoading = this.state.isLoading;
-    const allinvoices = this.state.invoices;
+    const allitems = this.state.items;
 
 
     if (isLoading)
-      return (<div>Loading...</div>);
+      return (<div>Loading Skat Game...</div>);
 
-    let invoices = allinvoices.map( invoice =>
-        <tr key={invoice.id}>
-          <td>{invoice.Vendor}</td>
-          <td>{invoice.Amount}</td>
-          <td>{invoice.Invoice}</td>
-          <td>{invoice.Date}</td>
-          <td><Button className="btn btn-lg btn-success" onClick={() => this.remove(invoice.id)}> <FontAwesomeIcon icon={faThumbsUp} /> Okay </Button> </td>
-          <td><Button className="btn btn-lg btn-danger" onClick={() => this.remove(invoice.id)}> <FontAwesomeIcon icon={faThumbsDown} /> Not okay </Button> </td>
-          <td><Button className="btn btn-lg btn-info" onClick={() => this.remove(invoice.id)}> <FontAwesomeIcon icon={faMoneyCheckAlt} /> 50% </Button> </td>
-          <td><Button className="btn btn-lg btn-warning" onClick={() => this.remove(invoice.id)}> <FontAwesomeIcon icon={faSearchDollar} /> ?? </Button> </td>
-          <td><Button className="btn btn-lg btn-info" onClick={() => this.remove(invoice.id)}> <FontAwesomeIcon icon={faImage} /> Image </Button> </td>
+    let items = allitems.map( item =>
+        <tr key={item.id}>
+          <td>{item.Game}</td>
+          <td>{item.Players}</td>
+          <td><Button className="btn btn-lg btn-success" onClick={() => this.remove(item.id)}> <FontAwesomeIcon icon={faThumbsUp} /> Create Room </Button> </td>
+          <td><Button className="btn btn-lg btn-info" onClick={() => this.remove(item.id)}> <FontAwesomeIcon icon={faThumbsUp} /> Join Room </Button> </td>
+          <td><Button className="btn btn-lg btn-warning" onClick={() => this.remove(item.id)}> <FontAwesomeIcon icon={faSearchDollar} /> Instructions </Button> </td>
         </tr>
     );
 
@@ -65,7 +45,7 @@ class App extends Component {
 
           <div className="row">
             <div className="col-12">
-              <h4>Pending Invoices - The Test Company</h4>
+              <h4>Skat Game</h4>
             </div>
           </div>
 
@@ -74,16 +54,13 @@ class App extends Component {
                 <Table dark responsive striped bordered hover>
                   <thead>
                     <tr>
-                      <th>Vendor</th>
-                      <th>Amount</th>
-                      <th>Invoice Num.</th>
-                      <th>Date</th>
+                      <th>Game</th>
+                      <th>Players</th>
                       <th colSpan="4" scope="row">Action</th>
-                      <th>Image</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {this.state.invoices.length === 0 ? <td colSpan="9">All caught up!</td> : invoices}
+                    {this.state.items.length === 0 ? <td colSpan="9">Skat 1.0 coming soon!</td> : items}
                   </tbody>
                 </Table>
               </div>
